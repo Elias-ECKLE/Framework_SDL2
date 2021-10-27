@@ -142,7 +142,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CHUD.cpp" />
+    <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="System.cpp" />
+    <ClCompile Include="CGameStateFinished.cpp" />
+    <ClCompile Include="CMovable.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="CPlayable.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CRessourcesManager.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CObj.h" />
+    <ClInclude Include="CEnemy.h" />
+    <ClInclude Include="System.h" />
+    <ClInclude Include="CList.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CRessourcesManager.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="CGameStateFinished.h" />
+    <ClInclude Include="CMovable.h" />
+    <ClInclude Include="CPlayable.h" />
+    <ClInclude Include="CHUD.h" />
+    <ClInclude Include="Structs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

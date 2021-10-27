@@ -1,20 +1,38 @@
 #pragma once
 
-#include<iostream>
-#include <stdio.h>
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
+#include "System.h"
 
 
-using namespace::std;
+
+
+
+
 
 int main(int argc, char* argv[]) {
 
 
 
-	cout << "hello world!" << endl;
+	
 
+	System game;
+	game.init();
+	
+
+
+	
+
+	
+	while (game.get_BRunning()) {
+
+		game.handleEvents();
+		game.update();
+		game.render();
+	}
+
+	game.clean();
+	
+
+	
 
 	return 0;
 }
