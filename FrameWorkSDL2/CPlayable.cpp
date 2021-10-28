@@ -4,6 +4,7 @@
 CPlayable::CPlayable() {
 
 	this->controlState= controller::oneSide;
+	this->stateTemp = controller::idle;
 	std::cout << "CPlayable class constructor ok " << std::endl;
 }
 
@@ -31,29 +32,23 @@ void CPlayable::checkX()
 	switch (this->controlState) {
 
 		case controller::oneSide:
-			if (this->pos.x <= ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER")) {
+			if (this->rect.x >= 0 && this->rect.x <= ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER")) {
 				this->dpltLessX();
 
 			}
-			else if (this->pos.x < 0) {
-				this->pos.x = 0;
+			else if (this->rect.x < 0) {
+				this->rect.x = 0;
 			}
-			else if (pos.x > ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER")) {
-				this->pos.x = ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER");
 
-			}
 		break;
 
 		case controller::otherSide:
-			if (this->pos.x >= 0 && this->pos.x <= ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER")) {
+			if (this->rect.x >= 0 && this->rect.x <= ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER")) {
 				this->dpltPlusX();
 
 			}
-			else if (this->pos.x < 0) {
-				this->pos.x = 0;
-			}
-			else if (pos.x > ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER")) {
-				this->pos.x = ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER");
+			else if (rect.x > ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER")) {
+				this->rect.x = ePlayable.getNb("WINDOW_WIDTH") - ePlayable.getNb("WIDTH_PLAYER");
 
 			}
 

@@ -26,12 +26,12 @@ class Entity {
 		{"MS", 1000},
 		{"COEFF_SCORE", 1},
 
-		{"WIDTH_PLAYER", 98},
-		{"HEIGHT_PLAYER", 26},
+		{"WIDTH_PLAYER", 147},
+		{"HEIGHT_PLAYER", 39},
 		{"WIDTH_ENNEMY", 5},
 		{"HEIGHT_ENNEMY", 5},
-		{"WIDTH_OBJ", 21},
-		{"HEIGHT_OBJ",21},
+		{"WIDTH_OBJ", 15},
+		{"HEIGHT_OBJ",15},
 
 		{"POS_Y_PLAYER",650},
 		{"POS_X_ENNEMY",5},
@@ -40,10 +40,10 @@ class Entity {
 		{"POS_Y_OBJ",320},
 
 
-		{"SPEED_X_OBJ",7},
+		{"SPEED_X_OBJ",4},
 		{"SPEED_Y_OBJ",4},
-		{"SPEED_X_PLAYER",6},
-		{"SPEED_Y_PLAYER",4},
+		{"SPEED_X_PLAYER",18},
+		{"SPEED_Y_PLAYER",18},
 
 		{"TAILLE_POLICE",9},
 		{"WIDTH_TEXT",20},

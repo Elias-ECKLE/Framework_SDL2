@@ -4,10 +4,7 @@ Component::Component()
 {
 	this->str_ComponentName = "";
 	this->str_FileName = "";
-	this->pos.x = 1;
-	this->pos.y = 1;
-	this->taille.w = 1;
-	this->taille.h = 1;
+	this->rect = { 1,1,1,1 };
 
 	std::cout << "CComponent class constructor ok " << std::endl;
 }
@@ -27,12 +24,10 @@ std::string Component::getCompName()
 	return this->str_ComponentName;
 }
 
-CCoords<int> Component::getPos()
+SDL_Rect Component::getRect()
 {
-	return this->pos;
+	return this->rect;
 }
 
-CDimensions<int> Component::getTaille()
-{
-	return this->taille;
-}
+
+

@@ -20,19 +20,19 @@ CSpeed<int> CMovable::getSpeed()
 
 void CMovable::dpltPlusX()
 {
-	this->pos.x += this->speed.x;
+	this->rect.x += this->speed.x;
 }
 void CMovable::dpltLessX()
 {
-	this->pos.x -= this->speed.x;
+	this->rect.x -= this->speed.x;
 }
 
 void CMovable::dpltPlusY()
 {
-	this->pos.y += this->speed.y;
+	this->rect.y += this->speed.y;
 }
 void CMovable::dpltLessY()
 {
-	this->pos.y -= this->speed.y;
+	this->rect.y -= this->speed.y;
 }
 

@@ -6,11 +6,11 @@ CObj::CObj()
 
 CObj::CObj(int x, int y, int w, int h, int speedX, int speedY, std::string str_Name, std::string str_File)
 {
-	this->pos.x = x;
-	this->pos.y = y;
+	this->rect.x = x;
+	this->rect.y = y;
 
-	this->taille.h = h;
-	this->taille.w = w;
+	this->rect.h = h;
+	this->rect.w = w;
 
 	this->speed.x = speedX;
 	this->speed.y = speedY;
@@ -26,24 +26,42 @@ CObj::~CObj()
 
 void CObj::checkX()
 {
-	if (this->pos.x<0 || this->pos.x>=eObj.getNb("WINDOW_WIDTH")-eObj.getNb("WIDTH_OBJ")) {
+	if (this->rect.x<0 || this->rect.x>=eObj.getNb("WINDOW_WIDTH")-eObj.getNb("WIDTH_OBJ")) {
 		this->speed.x = this->speed.x*-1;
 	}
-	this->dpltPlusX();
+
 
 }
 
 void CObj::checkY()
 {
+	if (this->rect.y < 0) {
+		this->speed.y = this->speed.y * -1;
+	}
+}
+
+void CObj::directObj(CPlayer& player)
+{
+	int dist = player.getCenter() - this->rect.x + this->rect.w / 2;
+	this->speed.x = this->speed.x+dist*-0.1;
+	this->speed.y = this->speed.y * -1;
+}
+
+
+
+bool CObj::isCollisionPlayer(SDL_Rect playerRect)
+{
+	return SDL_HasIntersection(&this->rect, &playerRect);
+	
 }
 
 CObj& CObj::operator=(const CObj& p)
 {
-	this->pos.x = p.pos.x;
-	this->pos.y = p.pos.y;
+	this->rect.x = p.rect.x;
+	this->rect.y = p.rect.y;
 
-	this->taille.h = p.taille.h;
-	this->taille.w = p.taille.w;
+	this->rect.h = p.rect.h;
+	this->rect.w = p.rect.w;
 
 	this->speed.x = p.speed.x;
 	this->speed.y = p.speed.y;

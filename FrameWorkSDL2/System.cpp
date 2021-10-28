@@ -11,6 +11,7 @@ System::System()
 	this->taille.h = eGame.getNb("WINDOW_HEIGHT");
 
 	this->b_Win = false;
+	this->b_Start = true;
 	this->nb_Fps = eGame.getNb("FPS");
 	this->nb_Ms = eGame.getNb("MS");
 
@@ -196,6 +197,32 @@ void System::handleEvents()
 
 void System::update()
 {
+	//OBJECT DEPLACEMENT__________________________________________________________
+	//stop init mov ball and change in function emplacement
+	if (this->obj.isCollisionPlayer(this->player.getRect())) {
+		this->b_Start = false;
+	}
+	//when game begins, move ball to the player 
+	if (b_Start==true) {
+		this->obj.dpltPlusY();
+	}
+	else {
+		//if collision with player then we put the right direction of movement in fucntion place hit
+		if (this->obj.isCollisionPlayer(this->player.getRect())) {
+			this->obj.directObj(this->player);
+		}
+		else { //check limits of the window 
+			this->obj.checkX();
+			this->obj.checkY();
+		}
+		//move object
+		this->obj.dpltPlusX();
+		this->obj.dpltPlusY();
+	}
+
+
+
+	
 }
 
 void System::render()
@@ -203,8 +230,8 @@ void System::render()
 	SDL_RenderClear(this->rend_pRenderer);
 
 	//draw images and objects :
-	textureManager.draw(this->player.getCompName(),this->player.getPos(),this->player.getTaille(),this->rend_pRenderer);
-	textureManager.draw(this->obj.getCompName(), this->obj.getPos(), this->obj.getTaille(), this->rend_pRenderer);
+	textureManager.draw(this->player.getCompName(),this->player.getRect(),this->rend_pRenderer);
+	textureManager.draw(this->obj.getCompName(), this->obj.getRect(), this->rend_pRenderer);
 
 	SDL_RenderPresent(this->rend_pRenderer);
 	SDL_Delay(this->nb_Ms/nb_Fps);

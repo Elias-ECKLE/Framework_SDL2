@@ -11,8 +11,7 @@ class Component {
 protected :
 	std::string str_FileName;
 	std::string str_ComponentName;
-	CCoords<int> pos;
-	CDimensions<int> taille;
+	SDL_Rect rect;
 
 public:
 	Component();
@@ -21,8 +20,8 @@ public:
 
 	std::string getFileName();
 	std::string getCompName();
-	CCoords<int> getPos();
-	CDimensions<int> getTaille();
+	SDL_Rect getRect();
+
 
 
 };

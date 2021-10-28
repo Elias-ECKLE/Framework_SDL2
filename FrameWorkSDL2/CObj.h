@@ -1,5 +1,6 @@
 #pragma once
 #include "CMovable.h"
+#include "CPlayer.h"
 
 class CObj: public CMovable{
 
@@ -13,7 +14,9 @@ public:
 
 
 	void checkX();
-	void checkY();
+	void checkY(); 
+	void directObj(CPlayer&);
+	bool isCollisionPlayer(SDL_Rect playerRect);
 
 	//surchage =
 	CObj& operator=(const CObj& p);

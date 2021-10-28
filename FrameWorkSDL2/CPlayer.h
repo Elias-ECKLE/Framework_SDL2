@@ -3,6 +3,7 @@
 
 
 class CPlayer : public CPlayable{
+	int center;
 
 public:
 	CPlayer();
@@ -10,6 +11,7 @@ public:
 	~CPlayer();
 
 
+	int getCenter();
 	//surchage =
 	CPlayer& operator=(const CPlayer& p);
 

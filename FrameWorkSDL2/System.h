@@ -16,6 +16,7 @@
 class System{
 
 	bool b_Running;
+	bool b_Start;
 	bool b_Win;
 	std::string str_pGameName;
 

@@ -1,2 +1,15 @@
-﻿  CPlayable.cpp
+﻿  CMovable.cpp
+  CObj.cpp
+D:\AlgoRacineF2\C++\Exercices\TP\Frameworks\FrameWorkSDL2\FrameWorkSDL2\CObj.cpp(46,31): warning C4244: '=' : conversion de 'double' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+  CPlayable.cpp
+  CPlayer.cpp
+  Entity.cpp
+  System.cpp
+D:\AlgoRacineF2\C++\Exercices\TP\Frameworks\FrameWorkSDL2\FrameWorkSDL2\System.cpp(36,37): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+  main.cpp
+  Génération de code en cours...
   FrameWorkSDL2.vcxproj -> D:\AlgoRacineF2\C++\Exercices\TP\Frameworks\FrameWorkSDL2\x64\Debug\FrameWorkSDL2.exe

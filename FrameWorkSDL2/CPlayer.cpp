@@ -4,15 +4,18 @@
 
 CPlayer::CPlayer()
 {
+	this->center = this->rect.x+this->rect.w/2;
 }
 
 CPlayer::CPlayer(int x, int y,int w,int h, int speedX, int speedY,std::string str_Name, std::string str_File) {
 
-	this->pos.x = x;
-	this->pos.y = y;
+	this->rect.x = x;
+	this->rect.y = y;
+	
+	this->rect.h = h;
+	this->rect.w = w;
 
-	this->taille.h = h;
-	this->taille.w = w;
+	this->center = this->rect.x + this->rect.w / 2;
 
 	this->speed.x = speedX;
 	this->speed.y = speedY;
@@ -30,13 +33,19 @@ CPlayer::~CPlayer()
 	std::cout << "CPlayer class destruction ok " << std::endl;
 }
 
+int CPlayer::getCenter()
+{
+	return this->center;
+}
+
 CPlayer& CPlayer::operator=(const CPlayer& p)
 {
-	this->pos.x = p.pos.x;
-	this->pos.y = p.pos.y;
+	this->rect.x = p.rect.x;
+	this->rect.y = p.rect.y;
 
-	this->taille.h = p.taille.h;
-	this->taille.w = p.taille.w;
+	this->rect.h = p.rect.h;
+	this->rect.w = p.rect.w;
+	this->center = p.center;
 
 	this->speed.x = p.speed.x;
 	this->speed.y = p.speed.y;
