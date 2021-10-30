@@ -1,8 +1,1 @@
-﻿  CObj.cpp
-D:\AlgoRacineF2\C++\Exercices\TP\Frameworks\FrameWorkSDL2\FrameWorkSDL2\CObj.cpp(45,53): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
-D:\AlgoRacineF2\C++\Exercices\TP\Frameworks\FrameWorkSDL2\FrameWorkSDL2\CObj.cpp(63,31): warning C4244: '=' : conversion de 'double' en 'T', perte possible de données
-          with
-          [
-              T=int
-          ]
-  FrameWorkSDL2.vcxproj -> D:\AlgoRacineF2\C++\Exercices\TP\Frameworks\FrameWorkSDL2\x64\Debug\FrameWorkSDL2.exe
+﻿  FrameWorkSDL2.vcxproj -> D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\x64\Debug\FrameWorkSDL2.exe
