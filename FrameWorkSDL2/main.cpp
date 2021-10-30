@@ -4,23 +4,11 @@
 
 
 
-
-
-
-
 int main(int argc, char* argv[]) {
 
 
-
-	
-
 	System game;
 	game.init();
-	
-
-
-	
-
 	
 	while (game.get_BRunning()) {
 
@@ -31,8 +19,5 @@ int main(int argc, char* argv[]) {
 
 	game.clean();
 	
-
-	
-
 	return 0;
 }

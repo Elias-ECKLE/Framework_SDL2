@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="CHUD.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="System.cpp" />

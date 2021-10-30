@@ -14,19 +14,31 @@ Component::~Component()
 	std::cout << "CComponent class destruction ok " << std::endl;
 }
 
-std::string Component::getFileName()
+std::string Component::getFileName()const
 {
 	return this->str_FileName;
 }
 
-std::string Component::getCompName()
+std::string Component::getCompName() const
 {
 	return this->str_ComponentName;
 }
 
-SDL_Rect Component::getRect()
+
+
+SDL_Rect Component::getRect()const
 {
 	return this->rect;
+}
+
+void Component::setRectW(int w)
+{
+	this->rect.w = 0;
+}
+
+void Component::setRectH(int h)
+{
+	this->rect.h = 0;
 }
 
 

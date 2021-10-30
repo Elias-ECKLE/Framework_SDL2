@@ -4,14 +4,17 @@
 #include <SDL_ttf.h>
 
 #include "structs.h"
+#include<iostream>
+#include<string>
 
 #include "CRessourcesManager.h"
 #include"CGameStateFinished.h"
-#include"Entity.h"
 #include "CPlayer.h"
 #include "CEnemy.h"
 #include "CObj.h"
 
+#ifndef System_H
+#define System_H
 
 class System{
 
@@ -30,14 +33,14 @@ class System{
 	
 	CRessourceManager textureManager;
 	CPlayer player;
-	//CEnemy enemy;
+	CEnemy arrayEnnemy[NB_ENEMY];
 	CObj obj;
 	CGameStateFinished GameOver;
 	CGameStateFinished GameVictory;
 
 
 
-	Entity eGame;
+	Entity datas;
 
 
 public:
@@ -60,7 +63,7 @@ public:
 
 
 	//accesseurs :
-	bool get_BRunning();
+	bool get_BRunning()const;
 
 	//mutateurs :
 	void set_BRunning();
@@ -70,3 +73,5 @@ public:
 
 
 };
+
+#endif

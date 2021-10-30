@@ -26,8 +26,8 @@ CObj::~CObj()
 
 void CObj::checkX()
 {
-	if (this->rect.x<0 || this->rect.x>=eObj.getNb("WINDOW_WIDTH")-eObj.getNb("WIDTH_OBJ")) {
-		this->speed.x = this->speed.x*-1;
+	if (this->rect.x<0 || this->rect.x>=datas.getNb("WINDOW_WIDTH")-datas.getNb("WIDTH_OBJ")) {
+		this->inversX();
 	}
 
 
@@ -36,8 +36,25 @@ void CObj::checkX()
 void CObj::checkY()
 {
 	if (this->rect.y < 0) {
-		this->speed.y = this->speed.y * -1;
+		this->inversY();
 	}
+	if (this->rect.y>datas.getNb("WINDOW_HEIGHT")) {
+		this->speed.x = datas.getNb("SPEED_X_OBJ");
+		this->speed.y = datas.getNb("SPEED_Y_OBJ");
+		this->rect.x = datas.getNb("WINDOW_WIDTH") / 2 - datas.getNb("WIDTH_OBJ") / 2;
+		this->rect.y= datas.getNb("WINDOW_HEIGHT") * 0.75 - datas.getNb("HEIGHT_OBJ") / 2;
+	}
+	
+}
+
+void CObj::inversX()
+{
+	this->speed.x *= -1;
+}
+
+void CObj::inversY()
+{
+	this->speed.y *= -1;
 }
 
 void CObj::directObj(CPlayer& player)
@@ -49,11 +66,7 @@ void CObj::directObj(CPlayer& player)
 
 
 
-bool CObj::isCollisionPlayer(SDL_Rect playerRect)
-{
-	return SDL_HasIntersection(&this->rect, &playerRect);
-	
-}
+
 
 CObj& CObj::operator=(const CObj& p)
 {

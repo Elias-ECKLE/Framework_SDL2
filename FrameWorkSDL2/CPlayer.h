@@ -2,6 +2,9 @@
 #include "CPlayable.h"
 
 
+#ifndef CPlayer_H
+#define CPlayer_H
+
 class CPlayer : public CPlayable{
 	int center;
 
@@ -11,8 +14,10 @@ public:
 	~CPlayer();
 
 
-	int getCenter();
+	int getCenter()const;
 	//surchage =
 	CPlayer& operator=(const CPlayer& p);
 
 };
+
+#endif

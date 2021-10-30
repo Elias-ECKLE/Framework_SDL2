@@ -31,8 +31,14 @@ void CMovable::dpltPlusY()
 {
 	this->rect.y += this->speed.y;
 }
+
 void CMovable::dpltLessY()
 {
 	this->rect.y -= this->speed.y;
 }
 
+bool CMovable::isColisionWith(SDL_Rect rect)const
+{
+	return SDL_HasIntersection(&this->rect, &rect);
+
+}

@@ -1,10 +1,14 @@
 #pragma once
 #include "CMovable.h"
 
+#ifndef CPlayable_H
+#define CPlayable_H
+
 enum class controller{oneSide=1, otherSide, idle=0};
 
 class CPlayable: public CMovable {
-	Entity ePlayable;
+	Entity datas;
+
 protected:
 	controller controlState;
 	controller stateTemp;
@@ -13,7 +17,7 @@ public:
 	CPlayable();
 	~CPlayable();
 
-	controller getControl();
+	controller getControl()const;
 	
 
 	void setControl(controller control);
@@ -22,3 +26,5 @@ public:
 
 
 };
+
+#endif

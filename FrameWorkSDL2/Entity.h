@@ -9,12 +9,17 @@
 
 using namespace::std;
 
+
 //_______________________________________________________MAGIC VALUES GAME_________________________________________________
 
+#define NB_ENEMY_LIGN 12
+#define NB_COLON 13
+#define NB_ENEMY NB_ENEMY_LIGN*NB_COLON
+
+#ifndef Entity_H
+#define Entity_H
 
 class Entity {
-
-
 
 	//DATA BY DEFAULT ACCORDING THE GAME
 
@@ -28,16 +33,15 @@ class Entity {
 
 		{"WIDTH_PLAYER", 147},
 		{"HEIGHT_PLAYER", 39},
-		{"WIDTH_ENNEMY", 5},
-		{"HEIGHT_ENNEMY", 5},
+		{"WIDTH_ENEMY", 48},
+		{"HEIGHT_ENEMY", 26},
 		{"WIDTH_OBJ", 15},
 		{"HEIGHT_OBJ",15},
 
 		{"POS_Y_PLAYER",650},
-		{"POS_X_ENNEMY",5},
-		{"POS_Y_ENNEMY",5},
 		{"POS_X_OBJ",500},
 		{"POS_Y_OBJ",320},
+
 
 
 		{"SPEED_X_OBJ",4},
@@ -64,7 +68,7 @@ class Entity {
 		{"NAME_PLAYER","Player"},
 		{"NAME_OBJ","Ball"},
 		{"FILE_RESSOURCE_PLAYER","../Images/barreJ1.png"},
-		{"FILE_RESSOURCE_ENNEMY","./"},
+		{"FILE_RESSOURCE_ENEMY","../Images/brick.png"},
 		{"FILE_RESSOURCE_OBJ","../Images/balle.png"}
 
 
@@ -90,16 +94,14 @@ public :
 	//void addToStrEntity();
 	void displayNbEntites();
 
-	
-
-
-
-
 
 };
 
+//___________________________________________WE INSTANCE A ENTITY FOR TRANSFER DATA IN THE CORRESPOND CLASSES_______________________________
 
 
+
+#endif
 
 
 

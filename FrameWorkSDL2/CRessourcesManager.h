@@ -6,6 +6,11 @@
 
 #include "Structs.h"
 
+
+#ifndef CRessourceManager_H
+#define CRessourceManager_H
+
+
 class CRessourceManager {
 
 
@@ -22,3 +27,5 @@ public :
 
 
 };
+
+#endif

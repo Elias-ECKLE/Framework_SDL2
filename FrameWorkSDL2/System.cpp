@@ -4,44 +4,46 @@
 System::System()
 {
 	this->b_Running = false;
-	this->str_pGameName =eGame.getStr("TITLE_GAME");
+	this->str_pGameName =datas.getStr("TITLE_GAME");
 
 
-	this->taille.w = eGame.getNb("WINDOW_WIDTH");
-	this->taille.h = eGame.getNb("WINDOW_HEIGHT");
+	this->taille.w = datas.getNb("WINDOW_WIDTH");
+	this->taille.h = datas.getNb("WINDOW_HEIGHT");
 
 	this->b_Win = false;
 	this->b_Start = true;
-	this->nb_Fps = eGame.getNb("FPS");
-	this->nb_Ms = eGame.getNb("MS");
+	this->nb_Fps = datas.getNb("FPS");
+	this->nb_Ms = datas.getNb("MS");
 
 	this->win_pWindow = nullptr;
 	this->rend_pRenderer = nullptr;
 
 
 	CPlayer playerTemp(
-		eGame.getNb("WINDOW_WIDTH")/2 - eGame.getNb("WIDTH_PLAYER")/2,
-		eGame.getNb("POS_Y_PLAYER"),
-		eGame.getNb("WIDTH_PLAYER"), 
-		eGame.getNb("HEIGHT_PLAYER"), 
-		eGame.getNb("SPEED_X_PLAYER"), 
-		eGame.getNb("SPEED_Y_PLAYER"), 
-		eGame.getStr("NAME_PLAYER"), 
-		eGame.getStr("FILE_RESSOURCE_PLAYER")
+		datas.getNb("WINDOW_WIDTH")/2 - datas.getNb("WIDTH_PLAYER")/2,
+		datas.getNb("POS_Y_PLAYER"),
+		datas.getNb("WIDTH_PLAYER"), 
+		datas.getNb("HEIGHT_PLAYER"), 
+		datas.getNb("SPEED_X_PLAYER"), 
+		datas.getNb("SPEED_Y_PLAYER"), 
+		datas.getStr("NAME_PLAYER"), 
+		datas.getStr("FILE_RESSOURCE_PLAYER")
 	);
-	player=playerTemp;
+	this->player=playerTemp;
 
 	CObj objTemp(
-		eGame.getNb("WINDOW_WIDTH") / 2 - eGame.getNb("WIDTH_OBJ") / 2, 
-		eGame.getNb("WINDOW_HEIGHT")*0.75 - eGame.getNb("HEIGHT_OBJ") / 2,
-		eGame.getNb("WIDTH_OBJ"),
-		eGame.getNb("HEIGHT_OBJ"),
-		eGame.getNb("SPEED_X_OBJ"),
-		eGame.getNb("SPEED_Y_OBJ"),
-		eGame.getStr("NAME_OBJ"),
-		eGame.getStr("FILE_RESSOURCE_OBJ")
+		datas.getNb("WINDOW_WIDTH") / 2 - datas.getNb("WIDTH_OBJ") / 2, 
+		datas.getNb("WINDOW_HEIGHT")*0.75 - datas.getNb("HEIGHT_OBJ") / 2,
+		datas.getNb("WIDTH_OBJ"),
+		datas.getNb("HEIGHT_OBJ"),
+		datas.getNb("SPEED_X_OBJ"),
+		datas.getNb("SPEED_Y_OBJ"),
+		datas.getStr("NAME_OBJ"),
+		datas.getStr("FILE_RESSOURCE_OBJ")
 	);
-	obj = objTemp;
+	this->obj = objTemp;
+
+
 
 }
 /*
@@ -84,21 +86,46 @@ bool System::init() {
 	this->initSDL_IMG();
 	this->initSDL_TEXT();
 
+
+
+	
 	//load textures
 	textureManager.load(this->player.getFileName(), this->player.getCompName(), this->rend_pRenderer);
-	//textureManager.load(eGame.getStr("FILE_RESSOURCE_ENEMY)"), eGame.getStr("NAME_ENEMY"), this->rend_pRenderer);
+	//textureManager.load(datas.getStr("FILE_RESSOURCE_ENEMY)"), datas.getStr("NAME_ENEMY"), this->rend_pRenderer);
 	textureManager.load(this->obj.getFileName(),this->obj.getCompName(), this->rend_pRenderer);
 
+
+	//tab of ennemis :
+
+
+	int xDecal = datas.getNb("WINDOW_WIDTH") * 0.10;
+	int yDecal = datas.getNb("WINDOW_HEIGHT") * 0.05;
+	int cpt = 0;
+
+	for (int i = 0; i < NB_COLON; i++) {
+		for (int j = 0; j < NB_ENEMY_LIGN; j++) {
+
+			CEnemy enemyTemp(
+				xDecal,
+				yDecal,
+				datas.getNb("WIDTH_ENEMY"),
+				datas.getNb("HEIGHT_ENEMY"),
+				datas.getStr("NAME_ENEMY")+ std::to_string(cpt),
+				datas.getStr("FILE_RESSOURCE_ENEMY")
+			);
+			this->arrayEnnemy[cpt] = enemyTemp;
+			textureManager.load(arrayEnnemy[cpt].getFileName(), arrayEnnemy[cpt].getCompName(), this->rend_pRenderer);
+
+			cpt++;
+			xDecal += datas.getNb("WIDTH_ENEMY");
+		}
+		xDecal = datas.getNb("WINDOW_WIDTH") * 0.10;
+		yDecal += datas.getNb("HEIGHT_ENEMY");
+
+	}
+
 	this->b_Running = true;
-
-
-	
-
 	return true;
-
-
-	
-
 
 }
 
@@ -199,7 +226,7 @@ void System::update()
 {
 	//OBJECT DEPLACEMENT__________________________________________________________
 	//stop init mov ball and change in function emplacement
-	if (this->obj.isCollisionPlayer(this->player.getRect())) {
+	if (this->obj.isColisionWith(this->player.getRect())) {
 		this->b_Start = false;
 	}
 	//when game begins, move ball to the player 
@@ -208,7 +235,7 @@ void System::update()
 	}
 	else {
 		//if collision with player then we put the right direction of movement in fucntion place hit
-		if (this->obj.isCollisionPlayer(this->player.getRect())) {
+		if (this->obj.isColisionWith(this->player.getRect())) {
 			this->obj.directObj(this->player);
 		}
 		else { //check limits of the window 
@@ -219,6 +246,19 @@ void System::update()
 		this->obj.dpltPlusX();
 		this->obj.dpltPlusY();
 	}
+
+	//BRICK COLLISION_____________________________________________________________
+	for (int i = 0; i < NB_ENEMY; i++) {
+
+		if (this->arrayEnnemy[i].isCollisionWith(this->obj.getRect())) {
+			this->arrayEnnemy[i].setRectW(0);
+			this->arrayEnnemy[i].setRectH(0);
+
+			this->obj.inversY(); //if colision then invers direction
+		}
+	}
+
+
 
 
 
@@ -232,6 +272,11 @@ void System::render()
 	//draw images and objects :
 	textureManager.draw(this->player.getCompName(),this->player.getRect(),this->rend_pRenderer);
 	textureManager.draw(this->obj.getCompName(), this->obj.getRect(), this->rend_pRenderer);
+	for (int i = 0; i < NB_ENEMY; i++) {
+		textureManager.draw(this->arrayEnnemy[i].getCompName(), this->arrayEnnemy[i].getRect(), this->rend_pRenderer);
+	}
+
+
 
 	SDL_RenderPresent(this->rend_pRenderer);
 	SDL_Delay(this->nb_Ms/nb_Fps);
@@ -243,7 +288,7 @@ void System::clean()
 	SDL_DestroyRenderer(this->rend_pRenderer);
 }
 
-bool System::get_BRunning()
+bool System::get_BRunning()const
 {
 	return this->b_Running;
 }

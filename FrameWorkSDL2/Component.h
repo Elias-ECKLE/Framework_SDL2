@@ -5,6 +5,11 @@
 #include <SDL.h>
 #include <iostream>
 #include "Structs.h"
+#include "Entity.h"
+
+
+
+
 
 class Component {
 
@@ -18,10 +23,15 @@ public:
 	~Component();
 
 
-	std::string getFileName();
-	std::string getCompName();
-	SDL_Rect getRect();
+	std::string getFileName()const;
+	std::string getCompName()const;
+	SDL_Rect getRect()const;
+
+	void setRectW(int w);
+	void setRectH(int h);
+
 
 
 
 };
+

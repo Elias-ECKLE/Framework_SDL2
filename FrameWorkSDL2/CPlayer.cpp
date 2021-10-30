@@ -33,7 +33,7 @@ CPlayer::~CPlayer()
 	std::cout << "CPlayer class destruction ok " << std::endl;
 }
 
-int CPlayer::getCenter()
+int CPlayer::getCenter()const
 {
 	return this->center;
 }
