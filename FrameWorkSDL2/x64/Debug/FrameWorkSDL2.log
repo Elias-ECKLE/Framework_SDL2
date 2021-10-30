@@ -1,24 +1,2 @@
-﻿  CEnemy.cpp
-  CHUD.cpp
-  CObj.cpp
-D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\FrameWorkSDL2\CObj.cpp(45,53): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
-D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\FrameWorkSDL2\CObj.cpp(63,31): warning C4244: '=' : conversion de 'double' en 'T', perte possible de données
-          with
-          [
-              T=int
-          ]
-  System.cpp
-D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\FrameWorkSDL2\System.cpp(36,37): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
-D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\FrameWorkSDL2\System.cpp(101,13): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\FrameWorkSDL2\System.cpp(102,13): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\FrameWorkSDL2\System.cpp(122,40): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
-  CGameStateFinished.cpp
-  CMovable.cpp
-  Component.cpp
-  CPlayable.cpp
-  CPlayer.cpp
-  CRessourcesManager.cpp
-  Entity.cpp
-  main.cpp
-  Génération de code en cours...
+﻿  LINK : D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\x64\Debug\FrameWorkSDL2.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
   FrameWorkSDL2.vcxproj -> D:\AlgoRacineF2\C++\Exercices\TP\TP_Brick_Tilemap_SDL2\Rendus_Brick_Tile\x64\Debug\FrameWorkSDL2.exe
