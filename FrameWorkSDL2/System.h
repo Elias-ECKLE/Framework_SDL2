@@ -8,7 +8,8 @@
 #include<string>
 
 #include "CRessourcesManager.h"
-#include"CGameStateFinished.h"
+#include "CLvl.h"
+#include"CGameStateManager.h"
 #include "CPlayer.h"
 #include "CEnemy.h"
 #include "CObj.h"
@@ -32,11 +33,10 @@ class System{
 	SDL_Renderer* rend_pRenderer;
 	
 	CRessourceManager textureManager;
-	CPlayer player;
-	CEnemy arrayEnnemy[NB_ENEMY];
-	CObj obj;
-	CGameStateFinished GameOver;
-	CGameStateFinished GameVictory;
+	CLvl lvl1;
+
+	CGameStateManager GameOver;
+	CGameStateManager GameVictory;
 
 
 

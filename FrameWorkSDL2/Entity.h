@@ -12,12 +12,18 @@ using namespace::std;
 
 //_______________________________________________________MAGIC VALUES GAME_________________________________________________
 
-#define NB_ENEMY_LIGN 12
-#define NB_COLON 13
-#define NB_ENEMY NB_ENEMY_LIGN*NB_COLON
 
 #ifndef Entity_H
 #define Entity_H
+
+#define NB_X_BLOCKS_TILESET 13
+#define NB_Y_BLOCKS_TILESET 11
+#define NB_BLOCKS_TILESET NB_X_BLOCKS_TILESET*NB_Y_BLOCKS_TILESET
+
+#define NB_X_BLOCKS_WIN 40
+#define NB_Y_BLOCKS_WIN 21
+#define NB_BLOCKS_WIN NB_X_BLOCKS_WIN*NB_Y_BLOCKS_WIN
+
 
 class Entity {
 
@@ -25,29 +31,24 @@ class Entity {
 
 	std::map<std::string, int> m_nb_Entities{
 
-		{"WINDOW_WIDTH", 700},
-		{"WINDOW_HEIGHT", 720},
+		{"WINDOW_WIDTH", 640},
+		{"WINDOW_HEIGHT", 340},
+
+		{"TILESET_WIDTH",220},
+		{"TILESET_HEIGHT",186},
+
+		{"WIDTH_TILE",16},
+		{"HEIGHT_TILE",16},
+
 		{"FPS",60},
 		{"MS", 1000},
-		{"COEFF_SCORE", 1},
-
-		{"WIDTH_PLAYER", 147},
-		{"HEIGHT_PLAYER", 39},
-		{"WIDTH_ENEMY", 48},
-		{"HEIGHT_ENEMY", 26},
-		{"WIDTH_OBJ", 15},
-		{"HEIGHT_OBJ",15},
-
-		{"POS_Y_PLAYER",650},
-		{"POS_X_OBJ",500},
-		{"POS_Y_OBJ",320},
+		
 
 
 
-		{"SPEED_X_OBJ",4},
-		{"SPEED_Y_OBJ",4},
-		{"SPEED_X_PLAYER",18},
-		{"SPEED_Y_PLAYER",18},
+
+
+
 
 		{"TAILLE_POLICE",9},
 		{"WIDTH_TEXT",20},
@@ -64,12 +65,10 @@ class Entity {
 
 		{"TITLE_SYSTEM","Engine System"},
 		{"TITLE_GAME","GAME"},
-		{"NAME_ENEMY","Brick"},
-		{"NAME_PLAYER","Player"},
-		{"NAME_OBJ","Ball"},
-		{"FILE_RESSOURCE_PLAYER","../Images/barreJ1.png"},
-		{"FILE_RESSOURCE_ENEMY","../Images/brick.png"},
-		{"FILE_RESSOURCE_OBJ","../Images/balle.png"}
+		{"NAME_LVL1","Lvl Mario Bros"},
+		{"FILE_IMAGE_TILESET","../Images/marioTileset.png"},
+		{"FILE_TEXT_TILESET","../Texts/marioTileset.txt"},
+	
 
 
 	};

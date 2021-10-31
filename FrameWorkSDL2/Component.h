@@ -8,7 +8,8 @@
 #include "Entity.h"
 
 
-
+#ifndef Component_H
+#define Component_H
 
 
 class Component {
@@ -35,3 +36,4 @@ public:
 
 };
 
+#endif

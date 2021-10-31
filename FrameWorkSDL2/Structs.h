@@ -32,3 +32,11 @@ public:
 };
 
 
+typedef struct
+{
+	SDL_Rect r;
+	bool layerCollision;
+} TileProp;
+
+
+

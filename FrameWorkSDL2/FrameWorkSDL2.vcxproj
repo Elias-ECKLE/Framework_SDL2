@@ -144,9 +144,11 @@
   <ItemGroup>
     <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="CHUD.cpp" />
+    <ClCompile Include="CLvl.cpp" />
+    <ClCompile Include="CLvlManager.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="System.cpp" />
-    <ClCompile Include="CGameStateFinished.cpp" />
+    <ClCompile Include="CGameStateManager.cpp" />
     <ClCompile Include="CMovable.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="CPlayable.cpp" />
@@ -156,6 +158,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLvl.h" />
+    <ClInclude Include="CLvlManager.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="System.h" />
@@ -164,7 +168,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CRessourcesManager.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="CGameStateFinished.h" />
+    <ClInclude Include="CGameStateManager.h" />
     <ClInclude Include="CMovable.h" />
     <ClInclude Include="CPlayable.h" />
     <ClInclude Include="CHUD.h" />

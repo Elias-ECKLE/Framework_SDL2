@@ -11,7 +11,6 @@ class CPlayable: public CMovable {
 
 protected:
 	controller controlState;
-	controller stateTemp;
 public:
 	//methodes:
 	CPlayable();

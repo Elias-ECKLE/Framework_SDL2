@@ -30,9 +30,16 @@ bool CRessourceManager::load(std::string str_fileName, std::string str_Key, SDL_
 	return true;
 }
 
-void CRessourceManager::draw(std::string str_Key,SDL_Rect rectTemp, SDL_Renderer* pRenderer)
+void CRessourceManager::draw(std::string str_Key,SDL_Rect rectDest, SDL_Renderer* pRenderer)
  {
 
 
-	SDL_RenderCopy(pRenderer, m_textureMap[str_Key], NULL, &rectTemp);
+	SDL_RenderCopy(pRenderer, m_textureMap[str_Key], NULL, &rectDest);
+}
+
+void CRessourceManager::draw(std::string str_Key, SDL_Rect rectSource,SDL_Rect rectDest, SDL_Renderer* pRenderer)
+{
+
+
+	SDL_RenderCopy(pRenderer, m_textureMap[str_Key], &rectSource, &rectDest);
 }

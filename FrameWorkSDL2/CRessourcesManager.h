@@ -23,6 +23,7 @@ public :
 
 	bool load(std::string str_fileName, std::string str_Key, SDL_Renderer* rend_pRenderer);
 	void draw(std::string str_Key, SDL_Rect rectTemp, SDL_Renderer* pRenderer);
+	void draw(std::string str_Key, SDL_Rect rectSource,SDL_Rect rectTemp, SDL_Renderer* pRenderer);
 	//void drawFrame(std::string str_Key, CCoords<int> pos, CDimensions<int> taille, int nb_CurrentRow, int nb_CurrentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip)
 
 

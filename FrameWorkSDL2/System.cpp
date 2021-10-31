@@ -19,31 +19,21 @@ System::System()
 	this->rend_pRenderer = nullptr;
 
 
-	CPlayer playerTemp(
-		datas.getNb("WINDOW_WIDTH")/2 - datas.getNb("WIDTH_PLAYER")/2,
-		datas.getNb("POS_Y_PLAYER"),
-		datas.getNb("WIDTH_PLAYER"), 
-		datas.getNb("HEIGHT_PLAYER"), 
-		datas.getNb("SPEED_X_PLAYER"), 
-		datas.getNb("SPEED_Y_PLAYER"), 
-		datas.getStr("NAME_PLAYER"), 
-		datas.getStr("FILE_RESSOURCE_PLAYER")
+	CLvl lvlTemp(
+		this->datas.getNb("TILESET_WIDTH"),
+		this->datas.getNb("TILESET_HEIGHT"),
+		NB_X_BLOCKS_TILESET,
+		NB_Y_BLOCKS_TILESET,
+		NB_X_BLOCKS_WIN,
+		NB_Y_BLOCKS_WIN,
+		this->datas.getNb("WIDTH_TILE"),
+		this->datas.getNb("HEIGHT_TILE"),
+		this->datas.getStr("FILE_IMAGE_TILESET"),
+		this->datas.getStr("NAME_LVL1"),
+		this->datas.getStr("FILE_TEXT_TILESET")
 	);
-	this->player=playerTemp;
 
-	CObj objTemp(
-		datas.getNb("WINDOW_WIDTH") / 2 - datas.getNb("WIDTH_OBJ") / 2, 
-		datas.getNb("WINDOW_HEIGHT")*0.75 - datas.getNb("HEIGHT_OBJ") / 2,
-		datas.getNb("WIDTH_OBJ"),
-		datas.getNb("HEIGHT_OBJ"),
-		datas.getNb("SPEED_X_OBJ"),
-		datas.getNb("SPEED_Y_OBJ"),
-		datas.getStr("NAME_OBJ"),
-		datas.getStr("FILE_RESSOURCE_OBJ")
-	);
-	this->obj = objTemp;
-
-
+	this->lvl1 = lvlTemp;
 
 }
 /*
@@ -88,45 +78,20 @@ bool System::init() {
 
 
 
+
+
 	
 	//load textures
-	textureManager.load(this->player.getFileName(), this->player.getCompName(), this->rend_pRenderer);
-	//textureManager.load(datas.getStr("FILE_RESSOURCE_ENEMY)"), datas.getStr("NAME_ENEMY"), this->rend_pRenderer);
-	textureManager.load(this->obj.getFileName(),this->obj.getCompName(), this->rend_pRenderer);
+	this->textureManager.load(this->lvl1.getFileName(), this->lvl1.getCompName(), this->rend_pRenderer);
+	this->lvl1.loadMap();
+
+
 
 
 	//tab of ennemis :
 
 
-	int xDecal = datas.getNb("WINDOW_WIDTH") * 0.10;
-	int yDecal = datas.getNb("WINDOW_HEIGHT") * 0.05;
-	int cpt = 0;
-
-	for (int i = 0; i < NB_COLON; i++) {
-		for (int j = 0; j < NB_ENEMY_LIGN; j++) {
-
-			CEnemy enemyTemp(
-				xDecal,
-				yDecal,
-				datas.getNb("WIDTH_ENEMY"),
-				datas.getNb("HEIGHT_ENEMY"),
-				datas.getStr("NAME_ENEMY")+ std::to_string(cpt),
-				datas.getStr("FILE_RESSOURCE_ENEMY")
-			);
-			this->arrayEnnemy[cpt] = enemyTemp;
-			textureManager.load(arrayEnnemy[cpt].getFileName(), arrayEnnemy[cpt].getCompName(), this->rend_pRenderer);
-
-			cpt++;
-			xDecal += datas.getNb("WIDTH_ENEMY");
-		}
-		xDecal = datas.getNb("WINDOW_WIDTH") * 0.10;
-		yDecal += datas.getNb("HEIGHT_ENEMY");
-
-	}
-
-	this->b_Running = true;
 	return true;
-
 }
 
 bool System::initSDL()
@@ -204,17 +169,6 @@ void System::handleEvents()
 			case SDL_QUIT:
 				this->b_Running = false;
 			break;
-			case SDL_KEYDOWN:
-
-				switch (event.key.keysym.sym) {
-					case SDLK_LEFT:
-						this->player.setControl(controller::oneSide);
-					break;
-					case SDLK_RIGHT:
-						this->player.setControl(controller::otherSide);
-					break;
-				}
-			break;
 
 			default:
 			break;
@@ -224,42 +178,7 @@ void System::handleEvents()
 
 void System::update()
 {
-	//OBJECT DEPLACEMENT__________________________________________________________
-	//stop init mov ball and change in function emplacement
-	if (this->obj.isColisionWith(this->player.getRect())) {
-		this->b_Start = false;
-	}
-	//when game begins, move ball to the player 
-	if (b_Start==true) {
-		this->obj.dpltPlusY();
-	}
-	else {
-		//if collision with player then we put the right direction of movement in fucntion place hit
-		if (this->obj.isColisionWith(this->player.getRect())) {
-			this->obj.directObj(this->player);
-		}
-		else { //check limits of the window 
-			this->obj.checkX();
-			this->obj.checkY();
-		}
-		//move object
-		this->obj.dpltPlusX();
-		this->obj.dpltPlusY();
-	}
-
-	//BRICK COLLISION_____________________________________________________________
-	for (int i = 0; i < NB_ENEMY; i++) {
-
-		if (this->arrayEnnemy[i].isCollisionWith(this->obj.getRect())) {
-			this->arrayEnnemy[i].setRectW(0);
-			this->arrayEnnemy[i].setRectH(0);
-
-			this->obj.inversY(); //if colision then invers direction
-		}
-	}
-
-
-
+	
 
 
 	
@@ -269,13 +188,15 @@ void System::render()
 {
 	SDL_RenderClear(this->rend_pRenderer);
 
-	//draw images and objects :
-	textureManager.draw(this->player.getCompName(),this->player.getRect(),this->rend_pRenderer);
-	textureManager.draw(this->obj.getCompName(), this->obj.getRect(), this->rend_pRenderer);
-	for (int i = 0; i < NB_ENEMY; i++) {
-		textureManager.draw(this->arrayEnnemy[i].getCompName(), this->arrayEnnemy[i].getRect(), this->rend_pRenderer);
-	}
 
+	//draw lvl :
+	SDL_Rect rectDest;
+	for (int i=0; i <NB_Y_BLOCKS_WIN ;i++) {
+		for (int j=0; j <NB_X_BLOCKS_WIN ; j++) {
+
+			this->textureManager.draw(this->lvl1.getCompName(), this->lvl1.getRectSource(i, j), this->lvl1.getRectDest(i,j), this->rend_pRenderer);
+		}
+	}
 
 
 	SDL_RenderPresent(this->rend_pRenderer);
